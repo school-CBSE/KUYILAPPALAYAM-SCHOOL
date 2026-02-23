@@ -62,25 +62,42 @@
 
     <!-- Header -->
     <header class="bg-red-600 text-white shadow-lg">
-        <div class="container mx-auto px-4 py-4 flex items-center gap-4">
-               <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center overflow-hidden">
+        <div class="container mx-auto px-4 py-3 flex items-center gap-3">
+            <div class="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex-shrink-0 flex items-center justify-center overflow-hidden">
                 <img src="School_logo.jpg" alt="School Logo" class="w-full h-full object-contain">
             </div>
-            <div class="flex-1">
-                <h1 id="schoolName" class="text-2xl font-bold editable">VIVEKANANDHA SCHOOL - CBSE</h1>
-                <p id="affiliation" class="text-sm opacity-90 editable">Affiliated to Central Board of Secondary Education - New Delhi | Affiliation No.930011</p>
+            <div class="flex-1 min-w-0">
+                <h1 id="schoolName" class="text-lg md:text-2xl font-bold editable leading-tight">VIVEKANANDHA SCHOOL - CBSE</h1>
+                <p id="affiliation" class="text-xs md:text-sm opacity-90 editable leading-snug mt-0.5">Affiliated to Central Board of Secondary Education - New Delhi | Affiliation No.930011</p>
             </div>
+            <!-- Hamburger Button (mobile only) -->
+            <button id="menuToggle" class="md:hidden flex-shrink-0 ml-2 p-2 rounded-lg hover:bg-red-700 transition-colors focus:outline-none" onclick="toggleMenu()" aria-label="Toggle menu">
+                <div id="hamburgerIcon" class="flex flex-col gap-1.5">
+                    <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+                    <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+                    <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+                </div>
+            </button>
         </div>
         
         <nav class="bg-red-700">
             <div class="container mx-auto px-4">
-                <ul class="flex gap-6 text-sm font-semibold flex-wrap">
+                <!-- Desktop nav -->
+                <ul class="hidden md:flex gap-1 text-sm font-semibold">
                     <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors">HOME</li>
                     <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='about-us.html'">ABOUT US</li>
-                    <!-- <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors">MANDATORY DISCLOSURE</li> -->
                     <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='facilities.html'">FACILITIES</li>
                     <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='galleries.html'">GALLERIES</li>
                     <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors">ADMISSION</li>
+                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='contact-us.html'">CONTACT US</li>
+                </ul>
+                <!-- Mobile nav -->
+                <ul id="mobileMenu" class="md:hidden hidden flex-col text-sm font-semibold pb-2">
+                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors border-b border-red-600">HOME</li>
+                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors border-b border-red-600" onclick="window.location.href='about-us.html'">ABOUT US</li>
+                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors border-b border-red-600" onclick="window.location.href='facilities.html'">FACILITIES</li>
+                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors border-b border-red-600" onclick="window.location.href='galleries.html'">GALLERIES</li>
+                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors border-b border-red-600">ADMISSION</li>
                     <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='contact-us.html'">CONTACT US</li>
                 </ul>
             </div>
@@ -625,6 +642,24 @@
         window.addEventListener('DOMContentLoaded', () => {
             loadSavedChanges();
         });
+
+        // Hamburger menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const bars = document.querySelectorAll('#hamburgerIcon span');
+            const isOpen = !menu.classList.contains('hidden');
+            if (isOpen) {
+                menu.classList.add('hidden');
+                bars[0].style.transform = '';
+                bars[1].style.opacity = '';
+                bars[2].style.transform = '';
+            } else {
+                menu.classList.remove('hidden');
+                bars[0].style.transform = 'translateY(8px) rotate(45deg)';
+                bars[1].style.opacity = '0';
+                bars[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+            }
+        }
 
     </script>
 </body>
