@@ -30,17 +30,17 @@
         }
         input:focus, textarea:focus, select:focus {
             outline: none;
-            border-color: #dc2626;
-            box-shadow: 0 0 0 3px rgba(220,38,38,0.1);
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
         }
         .send-btn {
-            background: linear-gradient(135deg, #dc2626, #991b1b);
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
             transition: all 0.3s;
         }
         .send-btn:hover {
-            background: linear-gradient(135deg, #991b1b, #7f1d1d);
+            background: linear-gradient(135deg, #1d4ed8, #1e3a8a);
             transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(220,38,38,0.4);
+            box-shadow: 0 6px 20px rgba(37,99,235,0.4);
         }
         #successMsg, #formErrorMsg { display: none; }
     </style>
@@ -54,7 +54,7 @@
             <button id="saveBtn" class="px-5 py-3 bg-green-500 hover:bg-green-600 text-white rounded-full font-semibold shadow-2xl transition-all flex items-center gap-2 border-2 border-green-300 text-sm">
                 💾 Save Changes
             </button>
-            <button id="logoutBtn" class="px-4 py-3 bg-red-500 hover:bg-red-600 text-white rounded-full font-semibold shadow-2xl transition-all flex items-center gap-2 border-2 border-red-300 text-sm">
+            <button id="logoutBtn" class="px-4 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-full font-semibold shadow-2xl transition-all flex items-center gap-2 border-2 border-blue-300 text-sm">
                 🚪 Logout
             </button>
         </div>
@@ -82,7 +82,7 @@
 
     <!-- ===================== HEADER ===================== -->
     <!-- Header -->
-    <header class="bg-red-600 text-white shadow-lg">
+    <header class="bg-blue-600 text-white shadow-xl border-b-4 border-blue-900">
         <div class="container mx-auto px-4 py-3 flex items-center gap-3">
             <div class="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex-shrink-0 flex items-center justify-center overflow-hidden">
                 <img src="School_logo.jpg" alt="School Logo" class="w-full h-full object-contain">
@@ -92,7 +92,7 @@
                 <p class="text-xs md:text-sm opacity-90 leading-snug mt-0.5">Affiliated to Central Board of Secondary Education - New Delhi | Affiliation No.930011</p>
             </div>
             <!-- Hamburger Button (mobile only) -->
-            <button id="menuToggle" class="md:hidden flex-shrink-0 ml-2 p-2 rounded-lg hover:bg-red-700 transition-colors focus:outline-none" onclick="toggleMenu()" aria-label="Toggle menu">
+            <button id="menuToggle" class="md:hidden flex-shrink-0 ml-2 p-2 rounded-lg hover:bg-blue-700 transition-colors focus:outline-none" onclick="toggleMenu()" aria-label="Toggle menu">
                 <div id="hamburgerIcon" class="flex flex-col gap-1.5">
                     <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
                     <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
@@ -101,36 +101,36 @@
             </button>
         </div>
         
-        <nav class="bg-red-700">
+        <nav class="bg-blue-700">
             <div class="container mx-auto px-4">
                 <!-- Desktop nav -->
                 <ul class="hidden md:flex gap-1 text-sm font-semibold">
-                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='school-website.html'">HOME</li>
-                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='about-us.html'">ABOUT US</li>
-                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='facilities.html'">FACILITIES</li>
-                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='galleries.html'">GALLERIES</li>
-                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors">ADMISSION</li>
-                    <li class="py-3 bg-red-800 px-3 cursor-pointer transition-colors">CONTACT US</li>
+                    <li class="py-3 hover:bg-blue-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='school-website.html'">HOME</li>
+                    <li class="py-3 hover:bg-blue-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='about-us.html'">ABOUT US</li>
+                    <li class="py-3 hover:bg-blue-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='facilities.html'">FACILITIES</li>
+                    <li class="py-3 hover:bg-blue-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='galleries.html'">GALLERIES</li>
+                    <li class="py-3 hover:bg-blue-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='admission.html'">ADMISSION</li>
+                    <li class="py-3 bg-blue-800 px-3 cursor-pointer transition-colors">CONTACT US</li>
                 </ul>
                 <!-- Mobile nav -->
                 <ul id="mobileMenu" class="md:hidden hidden flex-col text-sm font-semibold pb-2">
-                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors border-b border-red-600" onclick="window.location.href='school-website.html'">HOME</li>
-                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors border-b border-red-600" onclick="window.location.href='about-us.html'">ABOUT US</li>
-                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors border-b border-red-600" onclick="window.location.href='facilities.html'">FACILITIES</li>
-                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors border-b border-red-600" onclick="window.location.href='galleries.html'">GALLERIES</li>
-                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors border-b border-red-600">ADMISSION</li>
-                    <li class="py-3 bg-red-800 px-3 cursor-pointer transition-colors">CONTACT US</li>
+                    <li class="py-3 hover:bg-blue-800 px-3 cursor-pointer transition-colors border-b border-blue-600" onclick="window.location.href='school-website.html'">HOME</li>
+                    <li class="py-3 hover:bg-blue-800 px-3 cursor-pointer transition-colors border-b border-blue-600" onclick="window.location.href='about-us.html'">ABOUT US</li>
+                    <li class="py-3 hover:bg-blue-800 px-3 cursor-pointer transition-colors border-b border-blue-600" onclick="window.location.href='facilities.html'">FACILITIES</li>
+                    <li class="py-3 hover:bg-blue-800 px-3 cursor-pointer transition-colors border-b border-blue-600" onclick="window.location.href='galleries.html'">GALLERIES</li>
+                    <li class="py-3 hover:bg-blue-800 px-3 cursor-pointer transition-colors border-b border-blue-600" onclick="window.location.href='admission.html'">ADMISSION</li>
+                    <li class="py-3 bg-blue-800 px-3 cursor-pointer transition-colors">CONTACT US</li>
                 </ul>
             </div>
         </nav>
     </header>
 
     <!-- ===================== HERO BANNER ===================== -->
-    <div class="bg-gradient-to-r from-red-700 to-red-500 text-white py-16">
+    <div class="bg-gray-100 py-16">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl font-bold mb-3">Contact Us</h2>
-            <p class="text-lg opacity-90">We'd love to hear from you. Reach out to us anytime!</p>
-            <div class="flex justify-center mt-4 gap-1 text-sm opacity-75">
+            <h2 class="text-4xl font-bold mb-3 text-black">Contact Us</h2>
+            <p class="text-lg text-black">We'd love to hear from you. Reach out to us anytime!</p>
+            <div class="flex justify-center mt-4 gap-1 text-sm text-black">
                 <span onclick="window.location.href='school-website.html'" class="cursor-pointer hover:underline">Home</span>
                 <span class="mx-2">›</span>
                 <span>Contact Us</span>
@@ -143,8 +143,8 @@
 
         <!-- Info Cards -->
         <div class="grid md:grid-cols-3 gap-6 mb-12">
-            <div class="info-card bg-white rounded-xl shadow-md p-6 text-center border-t-4 border-red-500">
-                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div class="info-card bg-white rounded-xl shadow-md p-6 text-center border-t-4 border-blue-500">
+                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span class="text-3xl">📍</span>
                 </div>
                 <h3 class="text-lg font-bold text-gray-800 mb-2">Our Address</h3>
@@ -155,24 +155,24 @@
                 </p>
             </div>
 
-            <div class="info-card bg-white rounded-xl shadow-md p-6 text-center border-t-4 border-red-500">
-                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div class="info-card bg-white rounded-xl shadow-md p-6 text-center border-t-4 border-blue-500">
+                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span class="text-3xl">📞</span>
                 </div>
                 <h3 class="text-lg font-bold text-gray-800 mb-2">Phone Numbers</h3>
                 <p class="text-gray-600 text-sm leading-relaxed">
-                    <a href="tel:+914132295657" class="hover:text-red-600">+91 0413 2295657</a><br>
-                    <a href="tel:+919944938761" class="hover:text-red-600">+91 9944938761</a>
+                    <a href="tel:+914132295657" class="hover:text-blue-600">+91 0413 2295657</a><br>
+                    <a href="tel:+919944938761" class="hover:text-blue-600">+91 9944938761</a>
                 </p>
             </div>
 
-            <div class="info-card bg-white rounded-xl shadow-md p-6 text-center border-t-4 border-red-500">
-                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div class="info-card bg-white rounded-xl shadow-md p-6 text-center border-t-4 border-blue-500">
+                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span class="text-3xl">📧</span>
                 </div>
                 <h3 class="text-lg font-bold text-gray-800 mb-2">Email Address</h3>
                 <p class="text-gray-600 text-sm leading-relaxed">
-                    <a href="/cdn-cgi/l/email-protection#5e352b2737323f2e2e3f323f273f332d3d363131326c6d1e39333f3732703d3133" class="hover:text-red-600 break-all">
+                    <a href="/cdn-cgi/l/email-protection#5e352b2737323f2e2e3f323f273f332d3d363131326c6d1e39333f3732703d3133" class="hover:text-blue-600 break-all">
                         <span class="__cf_email__" data-cfemail="aec5dbd7c7c2cfdedecfc2cfd7cfc3ddcdc6c1c1c29c9deec9c3cfc7c280cdc1c3">[email&#160;protected]</span>
                     </a>
                 </p>
@@ -191,7 +191,7 @@
                 <div id="successMsg" class="mb-4 p-4 bg-green-100 border border-green-400 text-green-800 rounded-lg text-sm">
                     ✅ Your message has been sent successfully! We will get back to you soon.
                 </div>
-                <div id="formErrorMsg" class="mb-4 p-4 bg-red-100 border border-red-400 text-red-800 rounded-lg text-sm">
+                <div id="formErrorMsg" class="mb-4 p-4 bg-blue-100 border border-blue-400 text-blue-800 rounded-lg text-sm">
                     ❌ Failed to send message. Please try again or call us directly.
                 </div>
 
@@ -260,7 +260,7 @@
                         </iframe>
                     </div>
                     <a href="https://maps.google.com/?q=Kuyilappalayam,Puducherry" target="_blank"
-                        class="mt-3 inline-flex items-center gap-1 text-red-600 hover:text-red-800 text-sm font-semibold">
+                        class="mt-3 inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 text-sm font-semibold">
                         🗺️ Open in Google Maps →
                     </a>
                 </div>
@@ -278,16 +278,16 @@
                         </div>
                         <div class="flex justify-between items-center py-2">
                             <span class="text-gray-600 font-medium">Sunday & Holidays</span>
-                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-semibold">Closed</span>
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">Closed</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-red-600 rounded-xl shadow-md p-6 text-white">
+                <div class="bg-blue-600 rounded-xl shadow-md p-6 text-white">
                     <h3 class="text-lg font-bold mb-3">📞 Quick Contact</h3>
                     <p class="text-sm opacity-90 mb-4">For urgent enquiries, call us directly during office hours.</p>
                     <a href="tel:+919944938761"
-                        class="inline-flex items-center gap-2 bg-white text-red-600 font-bold px-5 py-2 rounded-full hover:bg-red-50 transition-all text-sm">
+                        class="inline-flex items-center gap-2 bg-white text-blue-600 font-bold px-5 py-2 rounded-full hover:bg-blue-50 transition-all text-sm">
                         📱 Call: +91 9944938761
                     </a>
                 </div>
@@ -445,7 +445,7 @@
 
         function showMessage(text, type = 'success') {
             const msg = document.createElement('div');
-            msg.className = `fixed top-6 right-6 z-50 px-6 py-3 rounded-lg shadow-lg text-white font-semibold text-sm transition-all ${type === 'success' ? 'bg-green-500' : 'bg-red-500'}`;
+            msg.className = `fixed top-6 right-6 z-50 px-6 py-3 rounded-lg shadow-lg text-white font-semibold text-sm transition-all ${type === 'success' ? 'bg-green-500' : 'bg-blue-500'}`;
             msg.textContent = text;
             document.body.appendChild(msg);
             setTimeout(() => msg.remove(), 3000);

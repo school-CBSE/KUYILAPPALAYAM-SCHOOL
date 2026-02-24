@@ -33,7 +33,7 @@
             <button id="saveBtn" class="px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg font-semibold shadow-lg transition-all flex items-center gap-2">
                 💾 Save Changes
             </button>
-            <button id="logoutBtn" class="px-4 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg font-semibold shadow-lg transition-all flex items-center gap-2">
+            <button id="logoutBtn" class="px-4 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold shadow-lg transition-all flex items-center gap-2">
                 🚪 Logout
             </button>
         </div>
@@ -61,7 +61,7 @@
     </div>
 
     <!-- Header -->
-    <header class="bg-red-600 text-white shadow-lg">
+    <header class="bg-blue-600 text-white shadow-lg">
         <div class="container mx-auto px-4 py-3 flex items-center gap-3">
             <div class="w-16 h-16 md:w-20 md:h-20 bg-white rounded-full flex-shrink-0 flex items-center justify-center overflow-hidden">
                 <img src="School_logo.jpg" alt="School Logo" class="w-full h-full object-contain">
@@ -71,7 +71,7 @@
                 <p class="text-xs md:text-sm opacity-90 leading-snug mt-0.5">Affiliated to Central Board of Secondary Education - New Delhi | Affiliation No.930011</p>
             </div>
             <!-- Hamburger Button (mobile only) -->
-            <button id="menuToggle" class="md:hidden flex-shrink-0 ml-2 p-2 rounded-lg hover:bg-red-700 transition-colors focus:outline-none" onclick="toggleMenu()" aria-label="Toggle menu">
+            <button id="menuToggle" class="md:hidden flex-shrink-0 ml-2 p-2 rounded-lg hover:bg-blue-700 transition-colors focus:outline-none" onclick="toggleMenu()" aria-label="Toggle menu">
                 <div id="hamburgerIcon" class="flex flex-col gap-1.5">
                     <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
                     <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
@@ -80,25 +80,25 @@
             </button>
         </div>
         
-        <nav class="bg-red-700">
+        <nav class="bg-blue-700">
             <div class="container mx-auto px-4">
                 <!-- Desktop nav -->
                 <ul class="hidden md:flex gap-1 text-sm font-semibold">
-                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='school-website.html'">HOME</li>
-                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='about-us.html'">ABOUT US</li>
-                    <li class="py-3 bg-red-800 px-3 cursor-pointer transition-colors">FACILITIES</li>
-                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='galleries.html'">GALLERIES</li>
-                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors">ADMISSION</li>
-                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='contact-us.html'">CONTACT US</li>
+                    <li class="py-3 hover:bg-blue-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='school-website.html'">HOME</li>
+                    <li class="py-3 hover:bg-blue-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='about-us.html'">ABOUT US</li>
+                    <li class="py-3 bg-blue-800 px-3 cursor-pointer transition-colors">FACILITIES</li>
+                    <li class="py-3 hover:bg-blue-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='galleries.html'">GALLERIES</li>
+                    <li class="py-3 hover:bg-blue-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='admission.html'">ADMISSION</li>
+                    <li class="py-3 hover:bg-blue-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='contact-us.html'">CONTACT US</li>
                 </ul>
                 <!-- Mobile nav -->
                 <ul id="mobileMenu" class="md:hidden hidden flex-col text-sm font-semibold pb-2">
-                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors border-b border-red-600" onclick="window.location.href='school-website.html'">HOME</li>
-                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors border-b border-red-600" onclick="window.location.href='about-us.html'">ABOUT US</li>
-                    <li class="py-3 bg-red-800 px-3 cursor-pointer transition-colors border-b border-red-600">FACILITIES</li>
-                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors border-b border-red-600" onclick="window.location.href='galleries.html'">GALLERIES</li>
-                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors border-b border-red-600">ADMISSION</li>
-                    <li class="py-3 hover:bg-red-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='contact-us.html'">CONTACT US</li>
+                    <li class="py-3 hover:bg-blue-800 px-3 cursor-pointer transition-colors border-b border-blue-600" onclick="window.location.href='school-website.html'">HOME</li>
+                    <li class="py-3 hover:bg-blue-800 px-3 cursor-pointer transition-colors border-b border-blue-600" onclick="window.location.href='about-us.html'">ABOUT US</li>
+                    <li class="py-3 bg-blue-800 px-3 cursor-pointer transition-colors border-b border-blue-600">FACILITIES</li>
+                    <li class="py-3 hover:bg-blue-800 px-3 cursor-pointer transition-colors border-b border-blue-600" onclick="window.location.href='galleries.html'">GALLERIES</li>
+                    <li class="py-3 hover:bg-blue-800 px-3 cursor-pointer transition-colors border-b border-blue-600" onclick="window.location.href='admission.html'">ADMISSION</li>
+                    <li class="py-3 hover:bg-blue-800 px-3 cursor-pointer transition-colors" onclick="window.location.href='contact-us.html'">CONTACT US</li>
                 </ul>
             </div>
         </nav>
@@ -126,7 +126,7 @@
                 <button class="edit-icon absolute top-4 right-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-lg" onclick="editImage('libraryMainImage')">📷 Change Image</button>
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
                     <div class="flex items-center gap-3 text-white">
-                        <div class="w-12 h-12 bg-red-600 rounded flex items-center justify-center">
+                        <div class="w-12 h-12 bg-blue-600 rounded flex items-center justify-center">
                             <span class="text-2xl">▶</span>
                         </div>
                         <span id="libraryMainLabel" class="text-2xl font-bold editable">DIGITAL LIBRARY</span>
@@ -168,7 +168,7 @@
                 <button class="edit-icon absolute top-4 right-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-lg" onclick="editImage('smartClassImage')">📷 Change Image</button>
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
                     <div class="flex items-center gap-3 text-white">
-                        <div class="w-12 h-12 bg-red-600 rounded flex items-center justify-center">
+                        <div class="w-12 h-12 bg-blue-600 rounded flex items-center justify-center">
                             <span class="text-2xl">▶</span>
                         </div>
                         <span id="smartClassLabel" class="text-2xl font-bold editable">TATA EDGE SMART CLASS</span>
@@ -190,7 +190,7 @@
                 <button class="edit-icon absolute top-4 right-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-lg" onclick="editImage('labImage')">📷 Change Image</button>
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
                     <div class="flex items-center gap-3 text-white">
-                        <div class="w-12 h-12 bg-red-600 rounded flex items-center justify-center">
+                        <div class="w-12 h-12 bg-blue-600 rounded flex items-center justify-center">
                             <span class="text-2xl">▶</span>
                         </div>
                         <span id="labLabel" class="text-2xl font-bold editable">INTEGRATED ROBOTICS & SCIENCE LABS</span>
@@ -211,7 +211,7 @@
                 <button class="edit-icon absolute top-4 right-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-lg" onclick="editImage('sportsImage')">📷 Change Image</button>
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
                     <div class="flex items-center gap-3 text-white">
-                        <div class="w-12 h-12 bg-red-600 rounded flex items-center justify-center">
+                        <div class="w-12 h-12 bg-blue-600 rounded flex items-center justify-center">
                             <span class="text-2xl">⚽</span>
                         </div>
                         <span id="sportsLabel" class="text-2xl font-bold editable">SPORTS FACILITIES</span>
@@ -232,7 +232,7 @@
                 <button class="edit-icon absolute top-4 right-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-lg" onclick="editImage('awardsImage')">📷 Change Image</button>
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
                     <div class="flex items-center gap-3 text-white">
-                        <div class="w-12 h-12 bg-red-600 rounded flex items-center justify-center">
+                        <div class="w-12 h-12 bg-blue-600 rounded flex items-center justify-center">
                             <span class="text-2xl">🏆</span>
                         </div>
                         <span id="awardsLabel" class="text-2xl font-bold editable">AWARDS & ACHIEVEMENTS</span>
@@ -280,7 +280,7 @@
                 <button class="edit-icon absolute top-4 right-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-lg" onclick="editImage('artsImage')">📷 Change Image</button>
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
                     <div class="flex items-center gap-3 text-white">
-                        <div class="w-12 h-12 bg-red-600 rounded flex items-center justify-center">
+                        <div class="w-12 h-12 bg-blue-600 rounded flex items-center justify-center">
                             <span class="text-2xl">▶</span>
                         </div>
                         <span id="artsLabel" class="text-2xl font-bold editable">VISUAL & PERFORMING ARTS</span>
@@ -296,7 +296,7 @@
                 <button class="edit-icon absolute top-4 right-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-lg" onclick="editImage('transportImage')">📷 Change Image</button>
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
                     <div class="flex items-center gap-3 text-white">
-                        <div class="w-12 h-12 bg-red-600 rounded flex items-center justify-center">
+                        <div class="w-12 h-12 bg-blue-600 rounded flex items-center justify-center">
                             <span class="text-2xl">🚌</span>
                         </div>
                         <span id="transportLabel" class="text-2xl font-bold editable">TRANSPORT FACILITIES</span>
@@ -317,7 +317,7 @@
                 <button class="edit-icon absolute top-4 right-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-lg" onclick="editImage('campusImage')">📷 Change Image</button>
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
                     <div class="flex items-center gap-3 text-white">
-                        <div class="w-12 h-12 bg-red-600 rounded flex items-center justify-center">
+                        <div class="w-12 h-12 bg-blue-600 rounded flex items-center justify-center">
                             <span class="text-2xl">▶</span>
                         </div>
                         <span id="campusLabel" class="text-2xl font-bold editable">MODERN INFRASTRUCTURE</span>
@@ -554,7 +554,7 @@
             const msg = document.createElement('div');
             msg.textContent = text;
             let bgColor = 'bg-green-500';
-            if (type === 'error') bgColor = 'bg-red-500';
+            if (type === 'error') bgColor = 'bg-blue-500';
             if (type === 'info') bgColor = 'bg-blue-500';
             msg.className = `fixed bottom-4 right-4 ${bgColor} text-white px-6 py-3 rounded-lg shadow-lg z-50`;
             document.body.appendChild(msg);
