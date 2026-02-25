@@ -323,7 +323,7 @@
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
-                <p id="footerCopyright" class="editable">Copyright ©2025 VIVEKANANDHA SCHOOL - CBSE | Developed by HIGHMON MEDIAS</p>
+                <p id="copyright" class="editable">Copyright ©2025 VIVEKANANDHA SCHOOL - CBSE | Developed by @<span style="color:#ef4444;font-weight:700;">S</span><span style="color:#f97316;font-weight:700;">R</span><span style="color:#eab308;font-weight:700;">I</span><span style="color:#22c55e;font-weight:700;">R</span><span style="color:#3b82f6;font-weight:700;">A</span><span style="color:#a855f7;font-weight:700;">M</span></p>
             </div>
         </div>
     </footer>
@@ -505,15 +505,17 @@
             }
         }
 
+        const FOOTER_IDS = ['footerAddress','footerEmail','footerPhone','footerCopyright','address','email','phone','copyright'];
+
         function saveAllChanges() {
             document.querySelectorAll('.editable').forEach(el => {
-                if (el.id) localStorage.setItem('contactus_' + el.id, el.innerHTML);
+                if (el.id && !FOOTER_IDS.includes(el.id)) localStorage.setItem('contactus_' + el.id, el.innerHTML);
             });
         }
 
         function loadSavedContent() {
             document.querySelectorAll('.editable').forEach(el => {
-                if (el.id) {
+                if (el.id && !FOOTER_IDS.includes(el.id)) {
                     const saved = localStorage.getItem('contactus_' + el.id);
                     if (saved) el.innerHTML = saved;
                 }
@@ -522,6 +524,32 @@
 
         // Load saved footer content on page load
         loadSavedContent();
+            // Apply shared header & footer AFTER local data loads (so shared always wins)
+            (function() {
+                try {
+                    var h = localStorage.getItem('sharedHeaderData');
+                    if (h) {
+                        var hd = JSON.parse(h);
+                        if (hd.schoolName) document.getElementById('schoolName').innerHTML = hd.schoolName;
+                        if (hd.affiliation) document.getElementById('affiliation').innerHTML = hd.affiliation;
+                    }
+                } catch(e) {}
+                try {
+                    var f = localStorage.getItem('sharedFooterData');
+                    if (f) {
+                        var fd = JSON.parse(f);
+                        var addr = document.getElementById('footerAddress') || document.getElementById('address');
+                        var email = document.getElementById('footerEmail') || document.getElementById('email');
+                        var phone = document.getElementById('footerPhone') || document.getElementById('phone');
+                        var copy = document.getElementById('footerCopyright') || document.getElementById('copyright');
+                        if (addr && fd.address) addr.innerHTML = fd.address;
+                        if (email && fd.email) email.innerHTML = fd.email;
+                        if (phone && fd.phone) phone.innerHTML = fd.phone;
+                        // Always apply colored copyright - from shared data or hardcoded fallback
+                        if (copy) copy.innerHTML = (fd.copyright && fd.copyright.indexOf('span') !== -1) ? fd.copyright : 'Copyright ©2025 VIVEKANANDHA SCHOOL - CBSE | Developed by @<span style="color:#ef4444;font-weight:700;">S</span><span style="color:#f97316;font-weight:700;">R</span><span style="color:#eab308;font-weight:700;">I</span><span style="color:#22c55e;font-weight:700;">R</span><span style="color:#3b82f6;font-weight:700;">A</span><span style="color:#a855f7;font-weight:700;">M</span>';
+                    }
+                } catch(e) {}
+            })();
 
         function showMessage(text, type = 'success') {
             const msg = document.createElement('div');
@@ -550,17 +578,5 @@
             }
         }
 </script>
-    <script>
-        // Load shared header from school-website.html edits
-        (function() {
-            var h = localStorage.getItem('sharedHeaderData');
-            if (!h) return;
-            try {
-                var d = JSON.parse(h);
-                if (d.schoolName) document.getElementById('schoolName').innerHTML = d.schoolName;
-                if (d.affiliation) document.getElementById('affiliation').innerHTML = d.affiliation;
-            } catch(e) {}
-        })();
-    </script>
 </body>
 </html>

@@ -522,7 +522,7 @@
             </div>
             
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
-                <p id="copyright" class="editable">Copyright ©2025 VIVEKANANDHA SCHOOL - CBSE | Developed by HIGHMON MEDIAS</p>
+                <p id="copyright" class="editable">Copyright ©2025 VIVEKANANDHA SCHOOL - CBSE | Developed by @<span style="color:#ef4444;font-weight:700;">S</span><span style="color:#f97316;font-weight:700;">R</span><span style="color:#eab308;font-weight:700;">I</span><span style="color:#22c55e;font-weight:700;">R</span><span style="color:#3b82f6;font-weight:700;">A</span><span style="color:#a855f7;font-weight:700;">M</span></p>
             </div>
         </div>
     </footer>
@@ -1079,10 +1079,7 @@
                 artsLabel: document.getElementById('artsLabel').innerHTML,
                 
                 // Footer
-                address: document.getElementById('address').innerHTML,
-                email: document.getElementById('email').innerHTML,
-                phone: document.getElementById('phone').innerHTML,
-                copyright: document.getElementById('copyright').innerHTML,
+                // Footer excluded - controlled by sharedFooterData
                 
                 // PDF
                 pdfUrl: currentPDFUrl,
@@ -1160,10 +1157,7 @@
                 if (data.artsLabel) document.getElementById('artsLabel').innerHTML = data.artsLabel;
                 
                 // Load footer
-                if (data.address) document.getElementById('address').innerHTML = data.address;
-                if (data.email) document.getElementById('email').innerHTML = data.email;
-                if (data.phone) document.getElementById('phone').innerHTML = data.phone;
-                if (data.copyright) document.getElementById('copyright').innerHTML = data.copyright;
+                // Footer loaded from sharedFooterData
                 
                 // Load PDF if exists
                 if (data.pdfUrl) {
@@ -1186,6 +1180,32 @@
         // Load saved changes on page load
         window.addEventListener('DOMContentLoaded', () => {
             loadSavedChanges();
+            // Apply shared header & footer AFTER local data loads (so shared always wins)
+            (function() {
+                try {
+                    var h = localStorage.getItem('sharedHeaderData');
+                    if (h) {
+                        var hd = JSON.parse(h);
+                        if (hd.schoolName) document.getElementById('schoolName').innerHTML = hd.schoolName;
+                        if (hd.affiliation) document.getElementById('affiliation').innerHTML = hd.affiliation;
+                    }
+                } catch(e) {}
+                try {
+                    var f = localStorage.getItem('sharedFooterData');
+                    if (f) {
+                        var fd = JSON.parse(f);
+                        var addr = document.getElementById('footerAddress') || document.getElementById('address');
+                        var email = document.getElementById('footerEmail') || document.getElementById('email');
+                        var phone = document.getElementById('footerPhone') || document.getElementById('phone');
+                        var copy = document.getElementById('footerCopyright') || document.getElementById('copyright');
+                        if (addr && fd.address) addr.innerHTML = fd.address;
+                        if (email && fd.email) email.innerHTML = fd.email;
+                        if (phone && fd.phone) phone.innerHTML = fd.phone;
+                        // Always apply colored copyright - from shared data or hardcoded fallback
+                        if (copy) copy.innerHTML = (fd.copyright && fd.copyright.indexOf('span') !== -1) ? fd.copyright : 'Copyright ©2025 VIVEKANANDHA SCHOOL - CBSE | Developed by @<span style="color:#ef4444;font-weight:700;">S</span><span style="color:#f97316;font-weight:700;">R</span><span style="color:#eab308;font-weight:700;">I</span><span style="color:#22c55e;font-weight:700;">R</span><span style="color:#3b82f6;font-weight:700;">A</span><span style="color:#a855f7;font-weight:700;">M</span>';
+                    }
+                } catch(e) {}
+            })();
         });
 
     
@@ -1207,17 +1227,5 @@
             }
         }
 </script>
-    <script>
-        // Load shared header from school-website.html edits
-        (function() {
-            var h = localStorage.getItem('sharedHeaderData');
-            if (!h) return;
-            try {
-                var d = JSON.parse(h);
-                if (d.schoolName) document.getElementById('schoolName').innerHTML = d.schoolName;
-                if (d.affiliation) document.getElementById('affiliation').innerHTML = d.affiliation;
-            } catch(e) {}
-        })();
-    </script>
 </body>
 </html>
