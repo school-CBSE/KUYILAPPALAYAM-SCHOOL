@@ -7,6 +7,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background-color: #f8fafc; font-family: sans-serif; }
+        .editable-hover:hover {
+            outline: 2px dashed #3b82f6;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .edit-icon { display: none; }
+        .admin-mode .edit-icon { display: block; }
+
 
         .form-label {
             display: block;
@@ -162,8 +170,8 @@
                 <img src="School_logo.jpg" alt="School Logo" class="w-full h-full object-contain">
             </div>
             <div class="flex-1 min-w-0">
-                <h1 class="text-lg md:text-2xl font-bold leading-tight">VIVEKANANDHA SCHOOL - CBSE</h1>
-                <p class="text-xs md:text-sm opacity-90 leading-snug mt-0.5">Affiliated to Central Board of Secondary Education - New Delhi | Affiliation No.930011</p>
+                <h1 id="schoolName" class="text-lg md:text-2xl font-bold leading-tight editable">VIVEKANANDHA SCHOOL - CBSE</h1>
+                <p id="affiliation" class="text-xs md:text-sm opacity-90 leading-snug mt-0.5 editable">Affiliated to Central Board of Secondary Education - New Delhi | Affiliation No.930011</p>
             </div>
             <button id="menuToggle" class="md:hidden flex-shrink-0 ml-2 p-2 rounded-lg hover:bg-blue-700 transition-colors focus:outline-none" onclick="toggleMenu()" aria-label="Toggle menu">
                 <div class="flex flex-col gap-1.5">
@@ -323,14 +331,74 @@
         </div>
     </div>
 
+    <!-- ═══════════════════ ADMIN PANEL ═══════════════════ -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+        <button id="adminBtn" class="hidden"></button>
+        <div id="adminPanel" class="hidden gap-2" style="display:none;">
+            <button id="saveBtn" class="px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg font-semibold shadow-lg transition-all flex items-center gap-2">
+                💾 Save Changes
+            </button>
+            <button id="logoutBtn" class="px-4 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold shadow-lg transition-all flex items-center gap-2">
+                🚪 Logout
+            </button>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" style="display:none;" class="fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 shadow-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Admin Login</h2>
+                <button id="closeModal" class="text-gray-500 hover:text-gray-700 text-2xl">×</button>
+            </div>
+            <form id="loginForm">
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-semibold mb-2">Password</label>
+                    <input type="password" id="passwordInput" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" placeholder="Enter admin password">
+                    <p id="errorMsg" class="text-red-500 text-sm mt-2 hidden"></p>
+                    <p class="text-gray-500 text-xs mt-2">Demo password: admin123</p>
+                </div>
+                <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition-colors">
+                    Login
+                </button>
+            </form>
+        </div>
+    </div>
+
     <!-- ═══════════════════ FOOTER ═══════════════════ -->
-    <footer class="bg-blue-900 text-white py-6 text-center text-sm">
-        <p>© 2025 Vivekanandha School – CBSE. All rights reserved.</p>
-        <p class="text-blue-300 text-xs mt-1">Affiliation No. 930011 | Affiliated to CBSE, New Delhi</p>
+    <footer class="bg-gray-900 text-white py-12 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="flex items-center gap-4">
+                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center">
+                        <span class="text-4xl">🏫</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">VIVEKANANDHA SCHOOL - CBSE</h3>
+                    <p id="footerAddress" class="text-gray-300 text-sm mb-4 editable">Gopalankadai Road,,<br>Kysnthullipalayam,<br>Puducherry - 605 009</p>
+                    <p id="footerEmail" class="text-gray-300 text-sm mb-2 editable"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5c2a352a39373d323d3238343d2f3f343333303f3e2f391c3b313d3530723f3331">[email&#160;protected]</a></p>
+                    <p id="footerPhone" class="text-gray-300 text-sm editable">+91 0413 2295657 , +91 9944938761</p>
+                </div>
+                <!-- <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li class="hover:text-white cursor-pointer" onclick="window.location.href='school-website.html'">🏠 Home</li>
+                        <li class="hover:text-white cursor-pointer" onclick="window.location.href='about-us.html'">ℹ️ About Us</li>
+                        <li class="hover:text-white cursor-pointer" onclick="window.location.href='facilities.html'">🏫 Facilities</li>
+                        <li class="hover:text-white cursor-pointer" onclick="window.location.href='galleries.html'">🖼️ Galleries</li>
+                        <li class="hover:text-white cursor-pointer" onclick="window.location.href='contact-us.html'">📞 Contact Us</li>
+                    </ul>
+                </div> -->
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
+                <p id="footerCopyright" class="editable">Copyright ©2025 VIVEKANANDHA SCHOOL - CBSE | Developed by @<span style="color:#ef4444;font-weight:700;">S</span><span style="color:#f97316;font-weight:700;">R</span><span style="color:#eab308;font-weight:700;">I</span><span style="color:#22c55e;font-weight:700;">R</span><span style="color:#3b82f6;font-weight:700;">A</span><span style="color:#a855f7;font-weight:700;">M</span></p>
+            </div>
+        </div>
     </footer>
 
     <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Mobile menu
         function toggleMenu() {
             document.getElementById('mobileMenu').classList.toggle('hidden');
@@ -467,11 +535,182 @@ Submitted on   : ${new Date().toLocaleString('en-IN')}
             });
         }
 
+
+        // ═══════════════════ ADMIN SYSTEM ═══════════════════
+        const ADMIN_PASSWORD = 'admin123';
+        let isAdmin = false;
+
+        // Secret keyword trigger - type "School" anywhere on the page
+        let keyBuffer = '';
+        const SECRET_KEYWORD = 'School';
+        document.addEventListener('keypress', (e) => {
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
+            keyBuffer += e.key;
+            if (keyBuffer.length > SECRET_KEYWORD.length) {
+                keyBuffer = keyBuffer.slice(-SECRET_KEYWORD.length);
+            }
+            if (keyBuffer === SECRET_KEYWORD) {
+                keyBuffer = '';
+                document.getElementById('loginModal').style.display = 'flex';
+                document.getElementById('passwordInput').focus();
+            }
+        });
+
+        document.getElementById('adminBtn').addEventListener('click', () => {
+            document.getElementById('loginModal').style.display = 'flex';
+        });
+
+        document.getElementById('closeModal').addEventListener('click', () => {
+            document.getElementById('loginModal').style.display = 'none';
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('errorMsg').classList.add('hidden');
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const password = document.getElementById('passwordInput').value;
+            if (password === ADMIN_PASSWORD) {
+                isAdmin = true;
+                document.getElementById('loginModal').style.display = 'none';
+                document.getElementById('adminBtn').classList.add('hidden');
+                document.getElementById('adminPanel').style.display = 'flex';
+                enableEditMode();
+                document.getElementById('passwordInput').value = '';
+                showAdminMessage('Welcome Admin! You can now edit footer content.', 'success');
+            } else {
+                document.getElementById('errorMsg').textContent = 'Incorrect password! Try again.';
+                document.getElementById('errorMsg').classList.remove('hidden');
+                document.getElementById('passwordInput').value = '';
+            }
+        });
+
+        document.getElementById('saveBtn').addEventListener('click', () => {
+            saveAllChanges();
+            showAdminMessage('All changes saved successfully! ✓', 'success');
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            if (confirm('Do you want to save changes before logging out?')) {
+                saveAllChanges();
+                showAdminMessage('Changes saved! Logging out...', 'success');
+                setTimeout(() => { logout(); }, 1500);
+            } else {
+                logout();
+            }
+        });
+
+        function logout() {
+            isAdmin = false;
+            document.getElementById('adminPanel').style.display = 'none';
+            document.getElementById('adminBtn').classList.remove('hidden');
+            disableEditMode();
+        }
+
+        function enableEditMode() {
+            document.body.classList.add('admin-mode');
+            document.querySelectorAll('.editable').forEach(element => {
+                element.classList.add('editable-hover');
+                element.addEventListener('click', handleEditClick);
+            });
+        }
+
+        function disableEditMode() {
+            document.body.classList.remove('admin-mode');
+            document.querySelectorAll('.editable').forEach(element => {
+                element.classList.remove('editable-hover');
+                element.removeEventListener('click', handleEditClick);
+            });
+        }
+
+        function handleEditClick(e) {
+            if (!isAdmin) return;
+            e.stopPropagation();
+            editText(this);
+        }
+
+        function editText(element) {
+            if (!isAdmin) return;
+            const currentHTML = element.innerHTML;
+            const isMultiline = currentHTML.includes('<br') || element.id === 'footerAddress';
+
+            if (isMultiline) {
+                const textarea = document.createElement('textarea');
+                textarea.value = currentHTML.replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]*>/g, '');
+                textarea.className = 'w-full px-3 py-2 border-2 border-blue-500 rounded focus:outline-none text-gray-800';
+                textarea.rows = 4;
+                element.replaceWith(textarea);
+                textarea.focus();
+                textarea.addEventListener('blur', () => {
+                    element.innerHTML = textarea.value.replace(/\n/g, '<br>');
+                    textarea.replaceWith(element);
+                    element.addEventListener('click', handleEditClick);
+                });
+            } else {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.value = element.textContent;
+                input.className = 'w-full px-3 py-2 border-2 border-blue-500 rounded focus:outline-none text-gray-800';
+                element.replaceWith(input);
+                input.focus();
+                input.addEventListener('blur', () => {
+                    element.textContent = input.value;
+                    input.replaceWith(element);
+                    element.addEventListener('click', handleEditClick);
+                });
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') input.blur();
+                });
+            }
+        }
+
+        function saveAllChanges() {
+            document.querySelectorAll('.editable').forEach(el => {
+                localStorage.setItem('admission_' + el.id, el.innerHTML);
+            });
+        }
+
+        function loadSavedContent() {
+            // Clear any old saved copyright so the hardcoded styled version always shows
+            localStorage.removeItem('admission_footerCopyright');
+            document.querySelectorAll('.editable').forEach(el => {
+                if (el.id === 'footerCopyright') return; // always use hardcoded styled HTML
+                const saved = localStorage.getItem('admission_' + el.id);
+                if (saved) el.innerHTML = saved;
+            });
+        }
+
+        function showAdminMessage(msg, type) {
+            const div = document.createElement('div');
+            div.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-lg text-white font-semibold ${type === 'success' ? 'bg-green-500' : 'bg-red-500'}`;
+            div.textContent = msg;
+            document.body.appendChild(div);
+            setTimeout(() => div.remove(), 3000);
+        }
+
         function closeSuccess() {
             document.getElementById('successOverlay').classList.remove('active');
-            window.location.href = 'school-website.html';
         }
-    </script>
 
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Load saved editable content
+        loadSavedContent();
+
+        // Load shared header from school-website.html edits
+        (function() {
+            try {
+                const h = localStorage.getItem('sharedHeaderData');
+                if (h) {
+                    const d = JSON.parse(h);
+                    if (d.schoolName) document.getElementById('schoolName').innerHTML = d.schoolName;
+                    if (d.affiliation) document.getElementById('affiliation').innerHTML = d.affiliation;
+                }
+            } catch(e) {}
+        })();
+
+    </script>
 </body>
 </html>

@@ -167,8 +167,8 @@
                 <img src="School_logo.jpg" alt="School Logo" class="w-full h-full object-contain">
             </div>
             <div class="flex-1 min-w-0">
-                <h1 class="text-lg md:text-2xl font-bold leading-tight">VIVEKANANDHA SCHOOL - CBSE</h1>
-                <p class="text-xs md:text-sm opacity-90 leading-snug mt-0.5">Affiliated to Central Board of Secondary Education - New Delhi | Affiliation No.930011</p>
+                <h1 id="schoolName" class="text-lg md:text-2xl font-bold leading-tight">VIVEKANANDHA SCHOOL - CBSE</h1>
+                <p id="affiliation" class="text-xs md:text-sm opacity-90 leading-snug mt-0.5">Affiliated to Central Board of Secondary Education - New Delhi | Affiliation No.930011</p>
             </div>
             <!-- Hamburger Button (mobile only) -->
             <button id="menuToggle" class="md:hidden flex-shrink-0 ml-2 p-2 rounded-lg hover:bg-blue-700 transition-colors focus:outline-none" onclick="toggleMenu()" aria-label="Toggle menu">
@@ -716,5 +716,17 @@
             }
         }
 </script>
+    <script>
+        // Load shared header from school-website.html edits
+        (function() {
+            var h = localStorage.getItem('sharedHeaderData');
+            if (!h) return;
+            try {
+                var d = JSON.parse(h);
+                if (d.schoolName) document.getElementById('schoolName').innerHTML = d.schoolName;
+                if (d.affiliation) document.getElementById('affiliation').innerHTML = d.affiliation;
+            } catch(e) {}
+        })();
+    </script>
 </body>
 </html>

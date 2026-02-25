@@ -547,6 +547,11 @@
             };
             
             localStorage.setItem('schoolWebsiteData', JSON.stringify(data));
+            // Sync header to all pages
+            localStorage.setItem('sharedHeaderData', JSON.stringify({
+                schoolName: data.schoolName,
+                affiliation: data.affiliation
+            }));
         }
 
         // Load saved changes from localStorage

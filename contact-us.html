@@ -88,8 +88,8 @@
                 <img src="School_logo.jpg" alt="School Logo" class="w-full h-full object-contain">
             </div>
             <div class="flex-1 min-w-0">
-                <h1 class="text-lg md:text-2xl font-bold leading-tight">VIVEKANANDHA SCHOOL - CBSE</h1>
-                <p class="text-xs md:text-sm opacity-90 leading-snug mt-0.5">Affiliated to Central Board of Secondary Education - New Delhi | Affiliation No.930011</p>
+                <h1 id="schoolName" class="text-lg md:text-2xl font-bold leading-tight">VIVEKANANDHA SCHOOL - CBSE</h1>
+                <p id="affiliation" class="text-xs md:text-sm opacity-90 leading-snug mt-0.5">Affiliated to Central Board of Secondary Education - New Delhi | Affiliation No.930011</p>
             </div>
             <!-- Hamburger Button (mobile only) -->
             <button id="menuToggle" class="md:hidden flex-shrink-0 ml-2 p-2 rounded-lg hover:bg-blue-700 transition-colors focus:outline-none" onclick="toggleMenu()" aria-label="Toggle menu">
@@ -307,9 +307,9 @@
                 </div>
                 <div>
                     <h3 class="text-xl font-bold mb-4">VIVEKANANDHA SCHOOL - CBSE</h3>
-                    <p class="text-gray-300 text-sm mb-4">Gopalankadai Road,,<br>Kuyilappalayam,<br>Puducherry - 605 009</p>
-                    <p class="text-gray-300 text-sm mb-2"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cfa4bab6a6a3aebfbfaea3aeb6aea2bcaca7a0a0a3fdfc8fa8a2aea6a3e1aca0a2">[email&#160;protected]</a></p>
-                    <p class="text-gray-300 text-sm">+91 0413 2295657 , +91 9944938761</p>
+                    <p id="footerAddress" class="text-gray-300 text-sm mb-4 editable">Gopalankadai Road,,<br>Kuyilappalayam,<br>Puducherry - 605 009</p>
+                    <p id="footerEmail" class="text-gray-300 text-sm mb-2 editable"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cfa4bab6a6a3aebfbfaea3aeb6aea2bcaca7a0a0a3fdfc8fa8a2aea6a3e1aca0a2">[email&#160;protected]</a></p>
+                    <p id="footerPhone" class="text-gray-300 text-sm editable">+91 0413 2295657 , +91 9944938761</p>
                 </div>
                 <div>
                     <h3 class="text-xl font-bold mb-4">Quick Links</h3>
@@ -323,7 +323,7 @@
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
-                <p>Copyright ©2025 VIVEKANANDHA SCHOOL - CBSE | Developed by HIGHMON MEDIAS</p>
+                <p id="footerCopyright" class="editable">Copyright ©2025 VIVEKANANDHA SCHOOL - CBSE | Developed by HIGHMON MEDIAS</p>
             </div>
         </div>
     </footer>
@@ -426,6 +426,8 @@
                 document.getElementById('adminBtn').classList.add('hidden');
                 document.getElementById('adminPanel').classList.remove('hidden');
                 document.getElementById('passwordInput').value = '';
+                enableEditMode();
+                showMessage('Welcome Admin! Click footer text to edit.', 'success');
             } else {
                 document.getElementById('loginError').textContent = 'Incorrect password! Try again.';
                 document.getElementById('loginError').classList.remove('hidden');
@@ -434,14 +436,92 @@
         });
 
         document.getElementById('saveBtn').addEventListener('click', () => {
+            saveAllChanges();
             showMessage('Changes saved successfully! ✓', 'success');
         });
 
         document.getElementById('logoutBtn').addEventListener('click', () => {
+            saveAllChanges();
             isAdmin = false;
             document.getElementById('adminPanel').classList.add('hidden');
             document.getElementById('adminBtn').classList.remove('hidden');
+            disableEditMode();
         });
+
+        function enableEditMode() {
+            document.body.classList.add('admin-mode');
+            document.querySelectorAll('.editable').forEach(element => {
+                element.classList.add('editable-hover');
+                element.addEventListener('click', handleEditClick);
+            });
+        }
+
+        function disableEditMode() {
+            document.body.classList.remove('admin-mode');
+            document.querySelectorAll('.editable').forEach(element => {
+                element.classList.remove('editable-hover');
+                element.removeEventListener('click', handleEditClick);
+            });
+        }
+
+        function handleEditClick(e) {
+            if (!isAdmin) return;
+            e.stopPropagation();
+            editText(this);
+        }
+
+        function editText(element) {
+            if (!isAdmin) return;
+            const currentHTML = element.innerHTML;
+            const isMultiline = currentHTML.includes('<br') || element.id === 'footerAddress';
+
+            if (isMultiline) {
+                const textarea = document.createElement('textarea');
+                textarea.value = currentHTML.replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]*>/g, '');
+                textarea.className = 'w-full px-3 py-2 border-2 border-blue-500 rounded focus:outline-none text-gray-800';
+                textarea.rows = 4;
+                element.replaceWith(textarea);
+                textarea.focus();
+                textarea.addEventListener('blur', () => {
+                    element.innerHTML = textarea.value.replace(/\n/g, '<br>');
+                    textarea.replaceWith(element);
+                    element.addEventListener('click', handleEditClick);
+                });
+            } else {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.value = element.textContent.trim();
+                input.className = 'w-full px-3 py-2 border-2 border-blue-500 rounded focus:outline-none text-gray-800';
+                element.replaceWith(input);
+                input.focus();
+                input.addEventListener('blur', () => {
+                    element.textContent = input.value;
+                    input.replaceWith(element);
+                    element.addEventListener('click', handleEditClick);
+                });
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') input.blur();
+                });
+            }
+        }
+
+        function saveAllChanges() {
+            document.querySelectorAll('.editable').forEach(el => {
+                if (el.id) localStorage.setItem('contactus_' + el.id, el.innerHTML);
+            });
+        }
+
+        function loadSavedContent() {
+            document.querySelectorAll('.editable').forEach(el => {
+                if (el.id) {
+                    const saved = localStorage.getItem('contactus_' + el.id);
+                    if (saved) el.innerHTML = saved;
+                }
+            });
+        }
+
+        // Load saved footer content on page load
+        loadSavedContent();
 
         function showMessage(text, type = 'success') {
             const msg = document.createElement('div');
@@ -470,5 +550,17 @@
             }
         }
 </script>
+    <script>
+        // Load shared header from school-website.html edits
+        (function() {
+            var h = localStorage.getItem('sharedHeaderData');
+            if (!h) return;
+            try {
+                var d = JSON.parse(h);
+                if (d.schoolName) document.getElementById('schoolName').innerHTML = d.schoolName;
+                if (d.affiliation) document.getElementById('affiliation').innerHTML = d.affiliation;
+            } catch(e) {}
+        })();
+    </script>
 </body>
 </html>
