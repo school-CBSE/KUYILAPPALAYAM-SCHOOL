@@ -3,7 +3,7 @@
 // Include this script in every HTML page
 // ========================================
 
-const API_URL = 'http://localhost:5000'; // Change this to your live server URL when deployed
+const API_URL = 'https://kuyilappalayam-school-production.up.railway.app'; // Change this to your live server URL when deployed
 
 // ✅ Load shared header (school name, affiliation) from MongoDB
 async function loadSharedHeader() {
